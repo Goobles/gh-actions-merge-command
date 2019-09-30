@@ -1,0 +1,36 @@
+name: 'Pull request merge command'
+description: 'Adds a /merge $branch command to pull request comments.'
+author: 'Gobius Dolhain'
+branding:
+  icon: 'git-merge'
+  color: 'blue'
+inputs:
+  allow_ff:
+    description: 'Allow fast forward merge'
+    required: false
+    default: false
+  ff_only:
+    description: 'Refuse to perform a non fast forward merge (requires allow_ff=true)'
+    required: false
+    default: false
+  allow_forks:
+    description: 'Allow action to run on forks'
+    required: false
+    default: false
+  user_name:
+    description: 'User name for git commits'
+    required: false
+    default: 'GitHub Nightly Merge Action'
+  user_email:
+    description: 'User email for git commits'
+    required: false
+    default: 'actions@github.com'
+  push_token:
+    description: 'Environment variable containing the token to use for push'
+    required: false
+    default: 'GITHUB_TOKEN'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.myInput }}
